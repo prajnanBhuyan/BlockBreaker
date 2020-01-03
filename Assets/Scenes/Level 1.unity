@@ -337,6 +337,11 @@ PrefabInstance:
       propertyPath: gameSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4026027543551837640, guid: 77cf9b894889c84478bf3bb59a144693,
+        type: 3}
+      propertyPath: isAutoPlayEnabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77cf9b894889c84478bf3bb59a144693, type: 3}
 --- !u!1001 &458241461

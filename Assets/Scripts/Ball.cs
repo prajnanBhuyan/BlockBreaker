@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class Ball : MonoBehaviour
 {
@@ -15,16 +14,21 @@ public class Ball : MonoBehaviour
     [SerializeField]
     AudioClip[] ballSounds;
 
+    [SerializeField]
+    public float randomFactor = 0.2f;
+
     Vector2 paddleToBallVector;
     bool hasStarted = false;
 
     AudioSource audioSource;
+    Rigidbody2D rigidbody2D;
 
     // Start is called before the first frame update
     void Start()
     {
         paddleToBallVector = transform.position - paddle.transform.position;
         audioSource = GetComponent<AudioSource>();
+        rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -54,10 +58,15 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Vector2 velocityTweak = new Vector2
+            (Random.Range(0f, randomFactor), 
+            Random.Range(0f, randomFactor));
+
         if (hasStarted)
         {
             var clip = ballSounds[Random.Range(0, ballSounds.Length)];
             audioSource.PlayOneShot(clip);
+            rigidbody2D.velocity += velocityTweak;
         }
     }
 }
